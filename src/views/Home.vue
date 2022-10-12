@@ -1,20 +1,25 @@
 <template>
   <div class="home">
-    <MovieList />
+    <Header />
+    <MovieList :movies="movies.items" />
     <Footer />
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
+<script setup>
 import Footer from '@/components/Footer.vue'
 import MovieList from '@/components/MovieList.vue'
+import Header from '@/components/Header.vue'
 
-export default {
-  name: 'Home',
-  components: {
-    Footer,
-    MovieList
-  }
-}
+import { onMounted, computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+const movies = computed(() => {
+  return store.state.movies
+})
+onMounted(() => {
+  store.dispatch('fetchMovies')
+})
 </script>

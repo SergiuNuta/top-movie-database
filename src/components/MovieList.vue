@@ -1,21 +1,20 @@
 <template>
-<h1>Made By Actions</h1>
-  <div v-for='movie in movies.items' :key='movie.id'>
+<div class="wrapper">
+  <!-- <div v-for='movie in movies' :key='movie.id'>
     {{movie.id}} {{movie.title}} {{movie.year}}
-    </div>
+  </div> -->
+<div class="movies flex flex-wrap justify-center gap-2 mt-10">
+  <Movie :movie="movie" v-for="movie in movies" :key="movie.id"/>
+</div>
+
+</div>
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
-import { useStore } from 'vuex'
+import Movie from './Movie.vue'
 
-const store = useStore()
-
-const movies = computed(() => {
-  return store.state.movies
-})
-
-onMounted(() => {
-  store.dispatch('fetchMovies')
+// eslint-disable-next-line no-undef
+defineProps({
+  movies: {}
 })
 </script>
