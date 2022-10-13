@@ -16,19 +16,11 @@ export default createStore({
   actions: {
     async fetchMovies ({ commit }) {
       try {
-        const data = await axios.get('https://imdb-api.com/en/API/Top250Movies/k_6fg5u00c')
+        const data = await axios.get('https://imdb-api.com/en/API/Top250Movies/k_qpymkukz')
         commit('SET_Movies', data.data)
       } catch (error) {
         console.log(error)
       }
     }
-    // async searchMovie ({ commit }) {
-    //   try {
-    //     const data = await axios.get(`https://imdb-api.com/en/API/SearchMovie/k_6fg5u00c/${title}`)
-    //     commit('SET_Movie', data.data)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
   }
 })

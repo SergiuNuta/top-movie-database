@@ -6,7 +6,9 @@
                             <img className="w-full h-80 object-fill transition duration-700 ease-in-out group-hover:opacity-60" :src='url(movie.image)' :alt='movie.title' />
                         </div>
                         <div className="pl-2 py-3 h-28">
-                            <a href="#" className=""><h1 className="text-gray-800 font-semibold text-base hover:text-red-500 transition duration-300 ease-in-out">{{ movie.fullTitle }}</h1></a>
+                            <router-link :to="`/movie/${movie.id}`">
+                                <h1 className="text-gray-800 font-semibold text-base group-hover:text-red-500 transition duration-300 ease-in-out">{{ movie.fullTitle }}</h1>
+                            </router-link>
                         </div>
                         <div className="pt-2 pl-2 absolute bottom-0 flex justify-items-center items-baseline">
                                 <img className="h-5" src="../assets/star-icon.png" alt="star">
