@@ -1,6 +1,6 @@
 <template>
   <div class="movieDetails w-full h-full">
-    <div class="header grid grid-cols-2">
+    <div class="header flex">
       <div class="movieTitle text-xl p-5">
         <p class="text-2xl">{{ movie.title }}</p>
         <section class="details flex items-center">
@@ -55,20 +55,20 @@
           </div>
         </section>
       </div>
-      <div class="poster border">
-        <div class="grid grid-cols-3" v-if="posters">
-          <div class="col-span-2">
+      <div class="poster">
+        <div class="grid grid-cols-3 h-full" v-if="posters">
+          <div class="col-span-2 bg-gradient-to-r from-gray-800 via-gray-800 to-gray-900">
             <img
-              class="h-full"
+              class="h-full w-full object-cover"
               :src="poster.link"
               :alt="poster.id"
               v-for="poster in posters.posters.slice(0, 1)"
               :key="poster.id"
             />
           </div>
-          <div class="col-span-1">
+          <div class="col-span-1 flex flex-col justify-around p-3 bg-gradient-to-r from-gray-800 via-gray-800 to-gray-900">
             <img
-              class=""
+              class="object-cover w-full"
               :src="image.image"
               :alt="image.title"
               v-for="image in images.items.slice(0, 3)"
@@ -78,12 +78,15 @@
         </div>
       </div>
     </div>
-    <div class="reviews col-span-2 p-5">
-      Reviews
-      <div
+    <div class="reviews col-span-2">
+      <div class="rev bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 w-full">
+        <p class="p-7"></p>
+      </div>
+      <div class="flex flex-wrap justify-evenly">
+        <div
         v-for="review in reviews.items"
         :key="review.username"
-        class="my-5 relative block overflow-hidden rounded-lg border border-gray-100 p-8 w-9/12"
+        class="my-5 mr-5 relative block overflow-hidden rounded-lg border border-gray-100 p-8 w-1/3"
       >
         <span
           class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
@@ -135,6 +138,7 @@
           </div>
         </dl>
       </div>
+      </div>
     </div>
   </div>
 </template>
@@ -157,10 +161,10 @@ const limitText = (text) => {
   return text.slice(0, 250) + (text.length > 50 ? '...' : '')
 }
 const requestMovies = axios.get(
-  `https://imdb-api.com/en/API/Title/k_1asiedt1/${route.params.id}/FullCast,Posters,Images`
+  `https://imdb-api.com/en/API/Title/k_3380b1ze/${route.params.id}/FullCast,Posters,Images`
 )
 const requestReviews = axios.get(
-  `https://imdb-api.com/en/API/Reviews/k_1asiedt1/${route.params.id}`
+  `https://imdb-api.com/en/API/Reviews/k_3380b1ze/${route.params.id}`
 )
 
 onBeforeMount(() => {
