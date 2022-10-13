@@ -16,7 +16,7 @@ export default createStore({
   actions: {
     async fetchMovies ({ commit }) {
       try {
-        const data = await axios.get('https://imdb-api.com/en/API/Top250Movies/k_qpymkukz')
+        const data = await axios.get('https://imdb-api.com/en/API/Top250Movies/k_1asiedt1')
         commit('SET_Movies', data.data)
       } catch (error) {
         console.log(error)
