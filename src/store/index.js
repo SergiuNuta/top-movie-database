@@ -10,13 +10,13 @@ export default createStore({
   },
   mutations: {
     SET_Movies (state, movies) {
-      state.movies = movies
+      state.movies = movies.items
     }
   },
   actions: {
     async fetchMovies ({ commit }) {
       try {
-        const data = await axios.get('https://imdb-api.com/en/API/Top250Movies/k_3380b1ze')
+        const data = await axios.get('https://imdb-api.com/en/API/Top250Movies/k_qpymkukz')
         commit('SET_Movies', data.data)
       } catch (error) {
         console.log(error)

@@ -161,10 +161,10 @@ const limitText = (text) => {
   return text.slice(0, 250) + (text.length > 250 ? '...' : '')
 }
 const requestMovies = axios.get(
-  `https://imdb-api.com/en/API/Title/k_3380b1ze/${route.params.id}/FullCast,Posters,Images`
+  `https://imdb-api.com/en/API/Title/k_qpymkukz/${route.params.id}/FullCast,Posters,Images`
 )
 const requestReviews = axios.get(
-  `https://imdb-api.com/en/API/Reviews/k_3380b1ze/${route.params.id}`
+  `https://imdb-api.com/en/API/Reviews/k_qpymkukz/${route.params.id}`
 )
 
 onBeforeMount(() => {
