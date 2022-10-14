@@ -20,11 +20,11 @@
 </template>
 
 <script setup>
+
 // eslint-disable-next-line no-undef
 defineProps({
   movie: {}
 })
-
 const url = (data) => {
   const occurence = data.split('@').length - 1
   const urlCopy = data.split('@')

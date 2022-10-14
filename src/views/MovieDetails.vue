@@ -1,7 +1,7 @@
 <template>
   <div class="movieDetails w-full h-full">
-    <div class="header flex">
-      <div class="movieTitle text-xl p-5">
+    <div class="headerSection  grid grid-cols-3">
+      <div class="movieTitle col-span-1 text-xl p-5">
         <p class="text-2xl">{{ movie.title }}</p>
         <section class="details flex items-center">
           <p class="pr-4">{{ movie.year }}</p>
@@ -40,7 +40,7 @@
           <div class="actors grid grid-cols-6">
             <p class="col-start-1 col-end-1 font-bold text-gray-900">Actors</p>
             <div class="col-start-2 col-end-7 flex flex-wrap">
-              <p v-for="actors in movie.actorList" :key="actors.id">
+              <p v-for="actors in movie.actorList.slice(0, 40)" :key="actors.id">
                 {{ actors.name }},&nbsp;
               </p>
             </div>
@@ -55,20 +55,20 @@
           </div>
         </section>
       </div>
-      <div class="poster">
+      <div class="poster col-span-2">
         <div class="grid grid-cols-3 h-full" v-if="posters">
-          <div class="col-span-2 bg-gradient-to-r from-gray-800 via-gray-800 to-gray-900">
+          <div class="posterImage col-span-2 bg-gradient-to-r from-gray-800 to-gray-900">
             <img
-              class="h-full w-full object-cover"
+              class="h-full w-full object-cover object-top"
               :src="poster.link"
               :alt="poster.id"
               v-for="poster in posters.posters.slice(0, 1)"
               :key="poster.id"
             />
           </div>
-          <div class="col-span-1 flex flex-col justify-around p-3 bg-gradient-to-r from-gray-800 via-gray-800 to-gray-900">
+          <div class="images col-span-1 flex flex-col gap-4 justify-around p-3 bg-gradient-to-r from-gray-800 to-gray-900">
             <img
-              class="object-cover w-full"
+              class="object-cover w-full h-64"
               :src="image.image"
               :alt="image.title"
               v-for="image in images.items.slice(0, 3)"
@@ -158,7 +158,7 @@ const images = computed(() => {
   return movie.value.images
 })
 const limitText = (text) => {
-  return text.slice(0, 250) + (text.length > 50 ? '...' : '')
+  return text.slice(0, 250) + (text.length > 250 ? '...' : '')
 }
 const requestMovies = axios.get(
   `https://imdb-api.com/en/API/Title/k_3380b1ze/${route.params.id}/FullCast,Posters,Images`
@@ -181,3 +181,17 @@ onBeforeMount(() => {
     })
 })
 </script>
+
+<style scoped>
+.headerSection {
+    height: 800px;
+    width: 100%;
+}
+.posterImage {
+    height: 800px;
+    width: 100%;
+}
+.images {
+    height: 800px;
+}
+</style>
